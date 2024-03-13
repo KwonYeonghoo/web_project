@@ -2,7 +2,6 @@ package com.example.web_project.model.DTO;
 
 import java.util.Date;
 
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

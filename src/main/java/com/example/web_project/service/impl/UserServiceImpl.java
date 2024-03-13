@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.example.web_project.model.DAO.PostDao;
 import com.example.web_project.model.DAO.UserDao;
 import com.example.web_project.model.DTO.UserDto;
 import com.example.web_project.model.Entity.UserEntity;
@@ -23,8 +21,6 @@ public class UserServiceImpl implements UserService{
     @Autowired
     private UserDao userDao;
 
-    @Autowired
-    private PostDao dao;
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;

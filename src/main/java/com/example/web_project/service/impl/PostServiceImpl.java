@@ -1,8 +1,6 @@
 package com.example.web_project.service.impl;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;

@@ -12,20 +12,17 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
-import jakarta.validation.Valid;
-
-
 import com.example.web_project.model.DTO.UserDto;
 import com.example.web_project.service.UserService;
 import com.example.web_project.service.impl.PostServiceImpl;
 
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @RequestMapping("/v1/web")
 @Slf4j
-public class WebController {
+public class UserController {
     
     @Autowired
     private UserService userService;
@@ -33,30 +30,8 @@ public class WebController {
     @Autowired
     private PostServiceImpl postService;
 
-    @GetMapping("/post")
-    public String getPost() {
-        return "/bootstrapPost/post";
-    }
-
-    @GetMapping("/loginPage")
-    public String getLoginPage() {
-        return "/bootstrapJL/login";
-    }
-
-    @GetMapping("/registerPage")
-    public String getRegisterPage() {
-        return "/bootstrapJL/register";
-    }
-
-    @PostMapping("/register")
-    public String register(@Valid @ModelAttribute UserDto dto) {
-        log.info("[WebController][register] dto > " + dto.toString());
-        userService.joinUser(dto);
-        return "redirect:/v1/web/loginPage";
-    }
-
     @GetMapping("/user/index")
-    public String boardListUser(Authentication authentication, Model model, @PageableDefault(page = 0,size= 5, sort="postDate" ) Pageable pageable) {
+    public String userIndexPage(Authentication authentication, Model model, @PageableDefault(page = 0,size= 5, sort="postDate" ) Pageable pageable) {
         
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         log.info("[WebController][boardListUser] userDetails >>" + userDetails.getUsername());
@@ -68,4 +43,7 @@ public class WebController {
 
         return "/bootstrapMain/user/index";
     }
+
+    // @GetMapping("/user/write")
+    // public String userWritePage(Authentication authentication, Model)
 }

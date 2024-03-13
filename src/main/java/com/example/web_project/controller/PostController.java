@@ -41,7 +41,7 @@ public class PostController {
     
     
     @PostMapping("/write")
-    public String insertPost(@Valid @ModelAttribute PostDto dto,MultipartFile file) throws Exception{
+    public String insertPost(@Valid @ModelAttribute PostDto dto, MultipartFile file) throws Exception{
         
         Date now = new Date();
         dto.setPostDate(now);
@@ -51,18 +51,19 @@ public class PostController {
 
         return "redirect:/v1/web/index";
     }
-    @GetMapping("write")
+
+    @GetMapping("/write")
     public String write(){
         return "/bootstrapWrite/write";
     }
 
-   
+    
     @GetMapping("/post2")
-    public String view(Model model,@RequestParam String postId) {
+    public String view(Model model, @RequestParam String postId) {
 
 
         Long longpostId = Long.parseLong(postId);
-        PostDto dto= postService.getByPostId(longpostId);
+        PostDto dto = postService.getByPostId(longpostId);
 
     
 
@@ -92,4 +93,15 @@ public class PostController {
         return "/bootstrapMain/index";
     }
 
+    // @GetMapping("/user/index")
+    // public String boardListUser(Model model, @PageableDefault(page = 0,size= 5, sort="postDate" ) Pageable pageable) {
+    //     model.addAttribute("lt", postService.getAllPost(pageable));
+        
+    //     model.addAttribute("previous", pageable.previousOrFirst().getPageNumber());
+    //     model.addAttribute("next", pageable.next().getPageNumber());
+    //     model.addAttribute("check", postService.getListCheck(pageable));
+
+        
+    //     return "/bootstrapMain/user/index";
+    // }
 }

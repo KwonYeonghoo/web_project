@@ -30,7 +30,7 @@ public class LogoutAuthSuccessHandler implements LogoutSuccessHandler{
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         userService.updateIsLoginByName(userDetails.getUsername(), false);
 
-        response.sendRedirect("/v1/web/loginPage");
+        response.sendRedirect("/v1/web/index");
     }
 
     
