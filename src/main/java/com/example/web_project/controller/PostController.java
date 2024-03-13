@@ -92,7 +92,4 @@ public class PostController {
         return "/bootstrapMain/index";
     }
 
-    @GetMapping("/update")
-    public Stirng post
-
 }
