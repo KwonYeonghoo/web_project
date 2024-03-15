@@ -55,17 +55,4 @@ public class WebController {
         return "redirect:/v1/web/loginPage";
     }
 
-    @GetMapping("/user/index")
-    public String boardListUser(Authentication authentication, Model model, @PageableDefault(page = 0,size= 5, sort="postDate" ) Pageable pageable) {
-        
-        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        log.info("[WebController][boardListUser] userDetails >>" + userDetails.getUsername());
-        
-        model.addAttribute("lt", postService.getAllPost(pageable));
-        model.addAttribute("previous", pageable.previousOrFirst().getPageNumber());
-        model.addAttribute("next", pageable.next().getPageNumber());
-        model.addAttribute("check", postService.getListCheck(pageable));
-
-        return "/bootstrapMain/user/index";
-    }
 }

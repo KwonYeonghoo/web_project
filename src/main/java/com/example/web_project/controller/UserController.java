@@ -42,4 +42,12 @@ public class UserController {
 
     // @GetMapping("/user/write")
     // public String userWritePage(Authentication authentication, Model)
+
+    @GetMapping("/userlog")
+    public String user(Authentication authentication, Model model) {
+
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        model.addAttribute("username", userDetails.getUsername());
+        return "/bootstrapMain/user/userlog";
+    }
 }
