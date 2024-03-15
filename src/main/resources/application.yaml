@@ -9,6 +9,8 @@ spring:
     output:
         ansi:
             enabled: always
+
+    
     # mustache 설정
     mustache:
         prefix: classpath:templates/
@@ -30,4 +32,8 @@ spring:
             hibernate:
                 show_sql: true
                 format_sql: true
-                
+    mvc:
+        satatic-path-pattern : /webapp/**
+    
+            
+            

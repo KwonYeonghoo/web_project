@@ -6,6 +6,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -102,13 +103,35 @@ public class PostServiceImpl implements PostService{
     }
 
     @Override
-    public void updatePost(PostDto dto) {
+    public void updatePost(PostDto dto, MultipartFile file) throws Exception {
         // TODO Auto-generated method stub
         PostEntity entity = postDao.getByPostId(dto.getPostId());
         entity.setPostTitle(dto.getPostTitle());
         entity.setPostContent(dto.getPostContent());
         entity.setPostWriter(dto.getPostWriter());
         entity.setPostDate(dto.getPostDate());
+    
+
+        String projectPath = System.getProperty("user.dir") + "/src/main/resources/static/files";
+
+        File sfile = new File(projectPath);
+        if(!sfile.exists()) {
+            sfile.mkdir();
+        }
+
+        UUID uuid =UUID.randomUUID();
+
+        String fileName = uuid+"_"+file.getOriginalFilename();
+
+        File saveFile = new File(projectPath,fileName);
+       
+        file.transferTo(saveFile);
+       
+        entity.setPostFileName(fileName);
+        entity.setPostFilePath("/files/"+fileName);
+
+        
+        System.out.println("Entity :"+ entity.toString());
 
         postDao.updatePost(entity);
     }

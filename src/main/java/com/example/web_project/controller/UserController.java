@@ -27,7 +27,7 @@ public class UserController {
     private PostServiceImpl postService;
 
     @GetMapping("/user/index")
-    public String userIndexPage(Authentication authentication, Model model, @PageableDefault(page = 0,size= 5, sort="postDate" ) Pageable pageable) {
+    public String userIndexPage(Authentication authentication, Model model, @PageableDefault(page = 0,size= 6, sort="postDate" ) Pageable pageable) {
         
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         log.info("[WebController][boardListUser] userDetails >>" + userDetails.getUsername());

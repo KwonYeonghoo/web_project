@@ -17,7 +17,7 @@ public interface PostService {
     public void insertPost(PostDto dto,MultipartFile file) throws Exception;
 
     // update
-    public void updatePost(PostDto dto);
+    public void updatePost(PostDto dto, MultipartFile file) throws Exception;
 
     // delete
     public void deletePost(Long postId);
