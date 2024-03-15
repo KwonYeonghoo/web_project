@@ -16,7 +16,9 @@ import com.example.web_project.model.Entity.PostEntity;
 import com.example.web_project.service.PostService;
 
 import jakarta.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 public class PostServiceImpl implements PostService{
 
@@ -26,7 +28,8 @@ public class PostServiceImpl implements PostService{
     @Override
     public void deletePost(Long postId) {
         // TODO Auto-generated method stub
-        postDao.deletePost(postId);
+        PostEntity entity = postDao.getByPostId(postId);
+        postDao.deletePost(entity.getPostId());
     }
 
     @Override
@@ -67,7 +70,7 @@ public class PostServiceImpl implements PostService{
     }
 
     @Override
-    public void insertPost(PostDto dto , MultipartFile file) throws Exception {
+    public PostEntity insertPost(PostDto dto , MultipartFile file) throws Exception {
         // TODO Auto-generated method stub
         PostEntity entity = new PostEntity();
         entity.setPostId(dto.getPostId());
@@ -80,26 +83,31 @@ public class PostServiceImpl implements PostService{
 
 
         String projectPath = System.getProperty("user.dir") + "/src/main/resources/static/files";
-
+        log.info("[PostServiceImpl][insertPost] projectPath >>> "+projectPath);
         File sfile = new File(projectPath);
         if(!sfile.exists()) {
             sfile.mkdir();
         }
 
-        UUID uuid =UUID.randomUUID();
+        // UUID uuid =UUID.randomUUID();
 
-        String fileName = uuid+"_"+file.getOriginalFilename();
+        // String fileName = uuid+"_"+file.getOriginalFilename();
+        String fileName = file.getOriginalFilename();
 
         File saveFile = new File(projectPath,fileName);
-       
+        log.info("[PostServiceImpl][insertPost] saveFile >>> "+saveFile);
         file.transferTo(saveFile);
-       
+        log.info("[PostServiceImpl][insertPost] Canonical Path >>> "+saveFile.getCanonicalPath());
         entity.setPostFileName(fileName);
+        // entity.setPostFilePath("/files/"+fileName);
         entity.setPostFilePath("/files/"+fileName);
 
-        System.out.println(fileName);
+        // System.out.println(fileName);
+        log.info("[PostServiceImpl][insertPost] entity >>> "+entity);
 
         postDao.insertPost(entity);
+
+        return entity;
     }
 
     @Override

@@ -17,7 +17,7 @@
         <!-- 상단바 -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand" href="#!">HooOk Board</a>
+                <h1><a class="navbar-brand" href="/v1/web/user/index">HooOk Board</a></h1>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -89,7 +89,7 @@
                             <div class="small text-muted">March 1, 2024</div>
                             <h2 class="card-title">Best Post Title</h2>
                             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-                            <a class="btn btn-primary" href="/v1/web/post">Read more →</a>
+                            <a class="btn btn-primary" href="/v1/web/user/post">Read more →</a>
                         </div>
                     </div>
                     <!-- 하단 게시글 Nested row for non-featured blog posts -->
@@ -104,7 +104,7 @@
                                     <div class="small text-muted">{{postDate}}</div>
                                     <h2 class="card-title h4">{{postTitle}}</h2>
                                     <p class="card-text">{{postWriter}}</p>
-                                    <a class="btn btn-primary" href="/v1/web/post2?postId={{postId}}">Read more →</a>
+                                    <a class="btn btn-primary" href="/v1/web/user/post2?postId={{postId}}">Read more →</a>
                                 </div>
                             </div>
                             <!-- 게시글 -->
@@ -116,7 +116,7 @@
                     <nav aria-label="Pagination">
                         <hr class="my-0" />
                         <ul class="pagination justify-content-center my-4">
-                            <li class="page-item "><a class="page-link" href="?page={{previous}}" tabindex="-1" aria-disabled="true" >Newer</a></li>
+                            <li class="page-item "><a class="page-link" href="?page={{previous}}" tabindex="-1" aria-disabled="true" >Previous</a></li>
                             {{#check}}
                                 <li class="page-item"><a class="page-link" href="?page={{next}}">Next</a></li>
                             {{/check}}

@@ -14,7 +14,7 @@ public interface PostService {
     public Page<PostEntity> getAllPost(Pageable pageable);
 
     // insert
-    public void insertPost(PostDto dto,MultipartFile file) throws Exception;
+    public PostEntity insertPost(PostDto dto,MultipartFile file) throws Exception;
 
     // update
     public void updatePost(PostDto dto, MultipartFile file) throws Exception;

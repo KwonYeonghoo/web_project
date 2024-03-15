@@ -6,13 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.example.web_project.model.DAO.CommentDao;
 import com.example.web_project.model.Entity.CommentEntity;
-import com.example.web_project.model.Repository.CommnetRepository;
+import com.example.web_project.model.Repository.CommentRepository;
 
 
 public class CommentDaoImpl implements CommentDao{
 
     @Autowired
-    private CommnetRepository commentRepository;
+    private CommentRepository commentRepository;
 
     @Override
     public void deleteComment(Long commentId) {
