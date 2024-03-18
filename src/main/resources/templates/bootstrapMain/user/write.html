@@ -11,50 +11,58 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="/bootstrapPost/css/styles.css" rel="stylesheet" />
     </head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="/v1/web/user/index">Hoook</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <!-- <li class="nav-item"><a class="nav-link" href="#">Login</a></li> -->
-                    <!-- <li class="nav-item"><a class="nav-link" href="#!">Register</a></li> -->
-                </ul>
+    <body>
+        <!-- 상단바 -->
+        <nav class="navbar navbar-expand-lg navbar-white bg-white border-bottom">
+            <div class="container">
+                <h1><a class="navbar-brand" href="/v1/web/user/index"><img width="200" height="80" src="/bootstrapMain/assets/logo.png" class="custom-logo"></a></h1>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <!-- 로그아웃 -->
+                        <li class="nav-item px-2 "><a class="nav-link" href="/logout">Logout</a></li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
-    <!--글 작성 부분-->
-    <div class="container my-3">
-        <div class="row justify-content-center">
-        <div class="col-12 col-md-8">
-        <h3 class="mb-4">글 작성</h3>
-        <form  action="/v1/web/user/write" method="post" enctype="multipart/form-data">
-            <div class="mb-3">
-                <label for="postTitle" class="form-label">제목</label>
-                <input type="textarea"  name="postTitle" class="form-control" id="postTitle" placeholder="제목을 입력하세요">
+        </nav>
+        <header>
+            <!--글 작성 부분-->
+            <div class="container min-vh-100 justify-content-center">
+                <div class="justify-content-center">
+                <h3 class="mt-5 mb-4">글 작성</h3>
+                <form  action="/v1/web/user/write" method="post" enctype="multipart/form-data">  
+                    <div class="mb-3">
+                        <label for="postTitle" class="form-label">제목</label>
+                        <input type="text"  name="postTitle" class="form-control" id="postTitle" placeholder="제목을 입력하세요" />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="postContent" class="form-label">내용</label>
+                        <textarea class="form-control"  name="postContent" id="postContent" style="height:200px" placeholder="내용을 입력하세요"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="postTags" class="form-label">태그</label>
+                        <input type="text" class="form-control" name="postTags" id="postTags" placeholder="태그를 입력하세요 (쉼표로 구분)">
+                    </div>
+                    <div class="mb-3">
+                        <label for="postFile" class="form-label" name>파일 첨부</label>
+                        <input type="file" class="form-control" name="file" id="postFile">
+                    </div>
+                    <div class="mb-3 text-end">
+                        <button type="submit" class="btn btn-primary">작성하기</button>
+                        <a class="btn btn-danger" href="/v1/web/user/index">취소</a>
+                    </div>
+                </form>
             </div>
-            <div class="mb-3">
-                <label for="postContent" class="form-label">내용</label>
-                <input class="form-control"  name="postContent" id="postContent" rows="7" placeholder="내용을 입력하세요"></input>
-            </div>
-            <div class="mb-3">
-                <label for="postTags" class="form-label">태그</label>
-                <input type="text" class="form-control" name="postTags" id="postTags" placeholder="태그를 입력하세요 (쉼표로 구분)">
-            </div>
-            <div class="mb-3">
-                <label for="postFile" class="form-label" name>파일 첨부</label>
-                <input type="file" class="form-control" name="file" id="postFile">
-            </div>
-            <div class="mb-3 text-end">
-                <button type="submit" class="btn btn-primary">작성하기</button>
-                <a class="btn btn-danger" href="/v1/web/user/index">취소</a>
-            </div>
-        </form>
-    </div>
-    
-    <script src="/bootstrapMain/js/scripts.js"></script>
-    <!-- Bootstrap Bundle with Popper.js -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+            </header>
+        </body>
+            <!-- Footer -->
+            <footer class="py-5 bg-dark">
+                <div class="container"><p class="m-0 text-center text-white">PlayData &copy; HOOoK Website 2024</p></div>
+            </footer>
+            <!-- Bootstrap core JS -->
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+            <!-- Core theme JS -->
+            <script src="/bootstrapMain/js/scripts.js"></script>
+            <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        </head>
+    </html>

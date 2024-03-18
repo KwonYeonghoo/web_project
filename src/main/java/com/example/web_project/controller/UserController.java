@@ -42,13 +42,16 @@ public class UserController {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         log.info("[UserController][userDetails] userName >> " + userDetails.getUsername());
         
-        model.addAttribute("lt", postService.getAllPost(pageable));
-
+        // model.addAttribute("lt", postService.getAllPost(pageable));
+        model.addAttribute("lt", postService.findAllByOrderByPostIdDesc(pageable));
+        model.addAttribute("mostViewed", postService.findMostViewedPost());
         model.addAttribute("previous", pageable.previousOrFirst().getPageNumber());
         model.addAttribute("next", pageable.next().getPageNumber());
         model.addAttribute("check", postService.getListCheck(pageable));
 
+        model.addAttribute("userId", userDetails.getUsername());
         return "/bootstrapMain/user/index";
+
     }
 
     @GetMapping("/user/write")
@@ -67,13 +70,11 @@ public class UserController {
         Date now = new Date();
         dto.setPostDate(now);
         dto.setPostWriter(userDetails.getUsername()); // 작성자 id 반환
-
+        log.info("[UserController][userWrite] dto >>> "+dto);
         PostEntity entity = postService.insertPost(dto, file);
 
         dto.setPostFileName(entity.getPostFileName());
         dto.setPostFilePath(entity.getPostFilePath());
-
-        log.info("[UserController][userWrite] dto >>> "+dto);
 
         return "redirect:/v1/web/user/index";
     }

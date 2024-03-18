@@ -46,7 +46,5 @@ public class UserDaoImpl implements UserDao{
         // TODO Auto-generated method stub
         userRepository.save(entity);
     }
-
-  
     
 }

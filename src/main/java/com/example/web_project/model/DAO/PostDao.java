@@ -11,6 +11,10 @@ public interface PostDao {
 
     public Page<PostEntity> getAllPost(Pageable pageable);
 
+    public Page<PostEntity> findAllByOrderByPostIdDesc(Pageable pageable);
+
+    public PostEntity findMostViewedPost();
+
     // insert
     public void insertPost(PostEntity entity);
 

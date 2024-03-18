@@ -11,6 +11,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 
 import com.example.web_project.config.handler.LoginAuthFailureHandler;
 import com.example.web_project.config.handler.LoginAuthSuccessHandler;
@@ -78,4 +79,9 @@ public class SecurityConfig {
         
         return http.build();
     }
+    //이미지 저장 경로 구현 중 
+    // public void  addResourceHandlers(ResourceHandlerRegistry registry) {
+    //     registry.addResourceHandler("/attach/images/**") // --1
+    //             .addResourceLocations("src/main/resources/static/files/"); //--2
+    //}
 }

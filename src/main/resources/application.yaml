@@ -32,8 +32,20 @@ spring:
             hibernate:
                 show_sql: true
                 format_sql: true
-    mvc:
-        satatic-path-pattern : /webapp/**
-    
+    web:
+        resources:
+            static-locations: classpath:/static/ 
+    sql:
+        init:
+            platform: mysql
+            mode: always
+    devtools:
+        livereload:
+            enabled: true
+        freemarker:
+            cache: false
+        thymeleaf:
+            cache: false
+
             
-            
+        

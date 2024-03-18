@@ -9,16 +9,17 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 
-import com.example.web_project.model.DAO.PostDao;
+import com.example.ScriptUtils;
 import com.example.web_project.model.DTO.UserDto;
 import com.example.web_project.model.Repository.PostRepository;
 import com.example.web_project.model.Repository.UserRepository;
 import com.example.web_project.service.UserService;
 import com.example.web_project.service.impl.PostServiceImpl;
 
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
@@ -54,10 +55,12 @@ public class WebController {
     }
 
     @PostMapping("/register")
-    public String register(@Valid @ModelAttribute UserDto dto) {
+    public String register(@Valid @ModelAttribute UserDto dto, HttpServletResponse response) throws Exception{
         log.info("[WebController][register] dto > " + dto.toString());
         userService.joinUser(dto);
-        return "redirect:/v1/web/loginPage";
+
+        ScriptUtils.alertAndMovePage(response, "회원가입에 성공하였습니다. 로그인 페이지로 이동합니다!", "/v1/web/loginPage");
+        return "/v1/web/loginPage"; // 실행 안됨
     }
 
     @GetMapping("/admin/setting")

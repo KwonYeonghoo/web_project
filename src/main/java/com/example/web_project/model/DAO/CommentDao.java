@@ -20,4 +20,6 @@ public interface CommentDao {
 
     // delete
     public void deleteComment(Long commentId);
+
+    public List<CommentEntity> findComment(int id);
 } 

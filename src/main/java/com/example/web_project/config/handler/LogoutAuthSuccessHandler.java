@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.stereotype.Component;
 
+import com.example.ScriptUtils;
 import com.example.web_project.service.UserService;
 
 import jakarta.servlet.ServletException;
@@ -29,8 +30,9 @@ public class LogoutAuthSuccessHandler implements LogoutSuccessHandler{
         
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         userService.updateIsLoginByName(userDetails.getUsername(), false);
-
-        response.sendRedirect("/v1/web/index");
+        
+        ScriptUtils.alertAndMovePage(response, "로그아웃합니다.", "/v1/web/index");
+        // response.sendRedirect("/v1/web/index");
     }
 
     

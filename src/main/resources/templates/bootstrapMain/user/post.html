@@ -12,22 +12,22 @@
         <link href="/bootstrapPost/css/styles.css" rel="stylesheet" />
     </head>
     <body>
-        <!-- Responsive navbar-->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <!-- 상단바 -->
+        <nav class="navbar navbar-expand-lg navbar-white bg-white border-bottom">
             <div class="container">
-                <a class="navbar-brand" href="/v1/web/user/index">HooOk Board</a>
+                <h1><a class="navbar-brand" href="/v1/web/user/index"><img width="200" height="80" src="/bootstrapMain/assets/logo.png" class="custom-logo"></a></h1>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <!-- 로그인(모달) -->
+                        <!-- 글쓰기 -->
+                        <li class="nav-item px-2 "><a class="nav-link" href="/v1/web/user/write">글쓰기</a></li>
+                        <!-- 로그아웃 -->
                         <li class="nav-item px-2 "><a class="nav-link" href="/logout">Logout</a></li>
                     </ul>
                 </div>
             </div>
-            <!-- 상단바 로그인 모달(라이트박스, 사용자알림 등) -->
-            
         </nav>
-        <!-- Page content-->
+        <!-- 게시글 -->
         <div class="container mt-5">
             <div class="row">
                 <div class="col-lg-10">
@@ -53,9 +53,9 @@
                     </article>
                     <!-- 버튼 추가 -->
                     <div class="my-4 text-end">
-                        <button type="button" class="btn btn-primary" >수정</button>
-                        <button type="button" id="delete" class="btn btn-danger" ><a href="/v1/web/user/postdelete?id={{postId}}">삭제</a></button>
-                        <button type="button" class="btn btn-secondary">목록</button>
+                        <button type="button" id="update" class="btn btn-primary" onClick="location.href='/v1/web/user/postupdate?id={{postId}}'">수정</button>
+                        <button type="button" id="delete" class="btn btn-danger" onClick="location.href='/v1/web/user/postdelete?id={{postId}}'">삭제</button>
+                        <button type="button" class="btn btn-secondary" onClick="location.href='/v1/web/user/index'">목록</button>
                     </div>
                     <!-- Comments section-->
                     <section class="mb-5">
@@ -102,13 +102,14 @@
                 </div>
             </div>
         </div>
-        <!-- Footer-->
+        <!-- Footer -->
         <footer class="py-5 bg-dark">
-            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
+            <div class="container"><p class="m-0 text-center text-white">PlayData &copy; HOOoK Website 2024</p></div>
         </footer>
-        <!-- Bootstrap core JS-->
+        <!-- Bootstrap core JS -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="/bootstrapPost/js/scripts.js"></script>
+        <!-- Core theme JS -->
+        <script src="/bootstrapMain/js/scripts.js"></script>
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     </body>
 </html>

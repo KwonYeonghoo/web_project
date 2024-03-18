@@ -19,6 +19,7 @@ public class PostDto {
     private String postWriter;
     private Date postDate;
     private String postContent;
+    private int postViewNum;
 
     // 이미지 
     private String postFileName;

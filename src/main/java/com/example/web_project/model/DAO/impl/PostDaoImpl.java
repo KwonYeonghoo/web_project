@@ -27,6 +27,22 @@ public class PostDaoImpl implements PostDao{
         return postRepository.findAll(page);
     }
 
+
+    @Override
+    public Page<PostEntity> findAllByOrderByPostIdDesc(Pageable page) {
+        // TODO Auto-generated method stub
+        return postRepository.findAllByOrderByPostIdDesc(page);
+    }
+
+    
+
+    @Override
+    public PostEntity findMostViewedPost() {
+        // TODO Auto-generated method stub
+        return postRepository.findMostViewedPost();
+    }
+    
+
     @Override
     public PostEntity getByPostId(Long postId) {
         // TODO Auto-generated method stub

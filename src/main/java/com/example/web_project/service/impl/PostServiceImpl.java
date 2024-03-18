@@ -10,8 +10,11 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.web_project.model.DAO.CommentDao;
 import com.example.web_project.model.DAO.PostDao;
+import com.example.web_project.model.DTO.CommentDto;
 import com.example.web_project.model.DTO.PostDto;
+import com.example.web_project.model.Entity.CommentEntity;
 import com.example.web_project.model.Entity.PostEntity;
 import com.example.web_project.service.PostService;
 
@@ -25,12 +28,17 @@ public class PostServiceImpl implements PostService{
     @Autowired
     private PostDao postDao;
 
+    @Autowired
+    private CommentDao commentDao;
+
     @Override
     public void deletePost(Long postId) {
         // TODO Auto-generated method stub
         PostEntity entity = postDao.getByPostId(postId);
         postDao.deletePost(entity.getPostId());
     }
+
+    
 
     @Override
     public Page<PostEntity> getAllPost(Pageable pageable) {
@@ -52,6 +60,15 @@ public class PostServiceImpl implements PostService{
         return postList;
     }
 
+    
+
+    @Override
+    public Page<PostEntity> findAllByOrderByPostIdDesc(Pageable pageable) {
+        // TODO Auto-generated method stub
+        Page<PostEntity> postList = postDao.findAllByOrderByPostIdDesc(pageable);
+        return postList;
+    }
+
     @Override
     public PostDto getByPostId(Long postId) {
         // TODO Auto-generated method stub
@@ -65,6 +82,27 @@ public class PostServiceImpl implements PostService{
         dto.setPostDate(post.getPostDate());
         dto.setPostFileName(post.getPostFileName());
         dto.setPostFilePath(post.getPostFilePath());
+        dto.setPostViewNum(post.getPostViewNum());
+
+        return dto;
+    }
+
+    
+
+    @Override
+    public PostDto findMostViewedPost() {
+        // TODO Auto-generated method stub
+        PostEntity post = postDao.findMostViewedPost();
+        PostDto dto = new PostDto();
+        
+        dto.setPostId(post.getPostId());
+        dto.setPostTitle(post.getPostTitle());
+        dto.setPostContent(post.getPostContent());
+        dto.setPostDate(post.getPostDate());
+        dto.setPostWriter(post.getPostWriter());
+        dto.setPostFileName(post.getPostFileName());
+        dto.setPostFilePath(post.getPostFilePath());
+        dto.setPostViewNum(post.getPostViewNum());
 
         return dto;
     }
@@ -89,10 +127,10 @@ public class PostServiceImpl implements PostService{
             sfile.mkdir();
         }
 
-        // UUID uuid =UUID.randomUUID();
+        UUID uuid =UUID.randomUUID();
 
-        // String fileName = uuid+"_"+file.getOriginalFilename();
-        String fileName = file.getOriginalFilename();
+        String fileName = uuid+"_"+file.getOriginalFilename();
+        // String fileName = file.getOriginalFilename();
 
         File saveFile = new File(projectPath,fileName);
         log.info("[PostServiceImpl][insertPost] saveFile >>> "+saveFile);
@@ -106,12 +144,12 @@ public class PostServiceImpl implements PostService{
         log.info("[PostServiceImpl][insertPost] entity >>> "+entity);
 
         postDao.insertPost(entity);
-
+        
         return entity;
     }
 
     @Override
-    public void updatePost(PostDto dto, MultipartFile file) throws Exception {
+    public PostEntity updatePost(PostDto dto, MultipartFile file) throws Exception {
         // TODO Auto-generated method stub
         PostEntity entity = postDao.getByPostId(dto.getPostId());
         entity.setPostTitle(dto.getPostTitle());
@@ -132,15 +170,27 @@ public class PostServiceImpl implements PostService{
         String fileName = uuid+"_"+file.getOriginalFilename();
 
         File saveFile = new File(projectPath,fileName);
-       
+        
         file.transferTo(saveFile);
-       
+        
         entity.setPostFileName(fileName);
         entity.setPostFilePath("/files/"+fileName);
 
         
         System.out.println("Entity :"+ entity.toString());
 
+        postDao.updatePost(entity);
+
+        return entity;
+    }
+
+
+    
+    @Override
+    public void saveDto(PostDto dto) {
+        // TODO Auto-generated method stub
+        PostEntity entity = postDao.getByPostId(dto.getPostId());
+        entity.setPostViewNum(dto.getPostViewNum());
         postDao.updatePost(entity);
     }
 
@@ -158,8 +208,8 @@ public class PostServiceImpl implements PostService{
         return check;
     }
 
-    
-    
 
+
+   
 
 }

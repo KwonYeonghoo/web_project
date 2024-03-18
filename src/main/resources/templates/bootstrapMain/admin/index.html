@@ -1,57 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>사용자 관리</title>
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/bootstrapMain/assets/favicon.ico" />
-    <!-- Core theme CSS (includes Bootstrap) -->
-    <link href="/bootstrapMain/css/styles.css" rel="stylesheet" />   
-</head>
-<body>
-    <!-- 상단바 -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="/v1/web/user/index">HooOk Board</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"></button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
-                </ul>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <link rel="profile" href="https://gmpg.org/xfn/11">
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+        <title></title>
+        <!-- Favicon -->
+        <link rel="icon" type="image/x-icon" href="/bootstrapMain/assets/favicon.ico" />
+        <!-- Core theme CSS (includes Bootstrap) -->
+        <link href="/bootstrapMain/css/styles.css" rel="stylesheet" />
+            
+    </head>
+    
+    <body>
+        <!-- 상단바 -->
+        <nav class="navbar navbar-expand-lg navbar-white bg-white border-bottom">
+            <div class="container">
+                <h1><a class="navbar-brand" href="/v1/web/admin/index"><img width="200" height="80" src="/bootstrapMain/assets/logo.png" class="custom-logo"></a></h1>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <!-- 글쓰기 -->
+                        <li class="nav-item px-2 "><a class="nav-link" href="/v1/web/admin/write">글쓰기</a></li>
+                        <!-- 관리자 페이지 -->
+                        <li class="nav-item px-2 "><a class="nav-link" href="/v1/web/admin/setting">관리자페이지</a></li>
+                        <!-- 로그아웃 -->
+                        <li class="nav-item px-2 "><a class="nav-link" href="/logout">Logout</a></li>
+                    </ul>
+                </div>
+            </div>          
+        </nav>
+        <header>
+        <!-- 메인 페이지 화면 -->
+                <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+                    <!-- 메인페이지 3개 캐러셀 -->
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img height="700" src="/bootstrapMain/assets/MAIN1.png" class="d-block w-100" alt="메인페이지1">
+                            </div>
+                            <div class="carousel-item">
+                            <img height="700" src="/bootstrapMain/assets/MAIN2.png" class="d-block w-100" alt="메인페이지2">
+                            </div>
+                            <div class="carousel-item">
+                            <img height="700" src="/bootstrapMain/assets/MAIN3.png" class="d-block w-100" alt="메인페이지3">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+                </div>
+            </div>
+        </header>
+        <!-- 글쓰기 버튼-->
+        <div class="container mt-3 mb-3">
+            <div class="d-flex justify-content-end">
+                    <a class="btn btn-success btn-lg" role="button" href="/v1/web/admin/write">글쓰기</a>
+                </div>
             </div>
         </div>
-    </nav>
-    <div class="container mt-3">
-        <h2 class="mb-3">사용자 목록</h2>
-        <h3 class="mb-4">관리자 {{admin}}님</h3>
-        <table class="table table-hover table-striped admin_board_wrap" id="user-admin">
-            <thead class="thead-light admin_boardList">
-                <tr>
-                    <th>아이디</th>
-                    <th>이름</th>
-                    <th>이메일</th>
-                    <th>나이</th>
-                    <th>권한</th>
-                    <th>계정 삭제</th>
-                </tr>
-            </thead>
-            <tbody>
-                {{#userlist}}
-                <tr class="admin_board_content">
-                    <td>{{userId}}</td>
-                    <td>{{userName}}</td>
-                    <td>{{userEmail}}</td>
-                    <td>{{userAge}}</td>
-                    <td>{{userRole}}</td>
-                    <td><a class="btn btn-danger" href="/v1/web/userdelete?id={{userId}}" role="button">계정 삭제</a></td>
-                </tr>
-                {{/userlist}}
-            </tbody>
-        </table>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/bootstrapPost/js/scripts.js"></script>
-</body>
+        <!-- 게시글 -->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- 메인 게시글 Featured blog post -->
+                    <h1 class="display-3">Best Post</h1>
+                    {{#mostViewed}}
+                    <div class="card mb-3">
+                        <a href="/v1/web/admin/post2?postId={{postId}}"><img class="card-img-top" src="{{postFilePath}}" alt="..." /></a>
+                        <div class="card-body">
+                            <div class="small text-muted">작성일: {{postDate}}</div>
+                            <h1 class="card-title h4">[베스트 게시글] {{postTitle}}</h1>
+                            <p class="card-text">작성자: {{postWriter}}</p>
+                            <p class="card-viewNum">조회수: {{postViewNum}}</p>
+                            <a class="btn btn-primary" href="/v1/web/admin/post2?postId={{postId}}">자세히 →</a>
+                        </div>
+                    </div>
+                    {{/mostViewed}}
+                    <!-- 하단 게시글 Nested row for non-featured blog posts -->
+                    <h3 class="display-5">Post</h3>
+                    <div class="row">
+                        {{#lt}}
+                        <div class="col-lg-6">
+                            <!-- 게시글 -->
+                            <div class="card mb-4">
+                                <a href="/v1/web/admin/post2?postId={{postId}}"><img height="442" class="card-img-top" src="{{postFilePath}}" alt="..." /></a>
+                                <div class="card-body">
+                                    <div class="small text-muted">작성일: {{postDate}}</div>
+                                    <h2 class="card-title h4">{{postTitle}}</h2>
+                                    <p class="card-text">작성자: {{postWriter}}</p>
+                                    <p class="card-viewNum">조회수: {{postViewNum}}</p>
+                                    <a class="btn btn-primary" href="/v1/web/admin/post2?postId={{postId}}">자세히 →</a>
+                                </div>
+                            </div>
+                        </div>
+                        {{/lt}}
+                    </div>
+                    
+                    <!-- 페이징 -->
+                    <nav aria-label="Pagination">
+                        <hr class="my-0" />
+                        <ul class="pagination justify-content-center my-4">
+                            <li class="page-item "><a class="page-link" href="?page={{previous}}" tabindex="-1" aria-disabled="true" >Previous</a></li>
+                            {{#check}}
+                                <li class="page-item"><a class="page-link" href="?page={{next}}">Next</a></li>
+                            {{/check}}
+                            {{^check}}
+                                <li class="page-item disabled"><a class="page-link" href="?page={{next}}">Next</a></li>
+                            {{/check}}
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!-- Footer -->
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">PlayData &copy; HOOoK Website 2024</p></div>
+        </footer>
+        <!-- Bootstrap core JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS -->
+        <script src="/bootstrapMain/js/scripts.js"></script>
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    </body>
 </html>
