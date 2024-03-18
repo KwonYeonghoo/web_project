@@ -13,12 +13,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.ScriptUtils;
 import com.example.web_project.model.DTO.PostDto;
 import com.example.web_project.model.Entity.PostEntity;
+import com.example.web_project.service.UserService;
 import com.example.web_project.service.impl.PostServiceImpl;
 
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
@@ -27,6 +31,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class UserController {
 
+    @Autowired
+    private UserService userService;
     @Autowired
     private PostServiceImpl postService;
 
@@ -75,11 +81,15 @@ public class UserController {
     // @GetMapping("/user/write")
     // public String userWritePage(Authentication authentication, Model)
 
-    @GetMapping("/userlog")
-    public String user(Authentication authentication, Model model) {
+    @GetMapping("/userdelete")
+    public String deleteUser(@RequestParam String id, HttpServletResponse response) throws Exception{
 
-        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        model.addAttribute("username", userDetails.getUsername());
-        return "/bootstrapMain/user/userlog";
+        System.out.println(id);
+        log.info("[UserContoller][deleteUser] userId >>> "+id);
+
+        userService.deleteUser(id);
+        ScriptUtils.alertAndMovePage(response, "계정삭제완료", "/v1/web/admin/setting");
+
+        return "redirect:/v1/web/admin/setting";
     }
 }

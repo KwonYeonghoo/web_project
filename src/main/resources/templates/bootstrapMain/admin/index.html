@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>사용자 관리</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/bootstrapMain/assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap) -->
+    <link href="/bootstrapMain/css/styles.css" rel="stylesheet" />   
+</head>
+<body>
+    <!-- 상단바 -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/v1/web/user/index">HooOk Board</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-3">
+        <h2 class="mb-3">사용자 목록</h2>
+        <h3 class="mb-4">관리자 {{admin}}님</h3>
+        <table class="table table-hover table-striped admin_board_wrap" id="user-admin">
+            <thead class="thead-light admin_boardList">
+                <tr>
+                    <th>아이디</th>
+                    <th>이름</th>
+                    <th>이메일</th>
+                    <th>나이</th>
+                    <th>권한</th>
+                    <th>계정 삭제</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#userlist}}
+                <tr class="admin_board_content">
+                    <td>{{userId}}</td>
+                    <td>{{userName}}</td>
+                    <td>{{userEmail}}</td>
+                    <td>{{userAge}}</td>
+                    <td>{{userRole}}</td>
+                    <td><a class="btn btn-danger" href="/v1/web/userdelete?id={{userId}}" role="button">계정 삭제</a></td>
+                </tr>
+                {{/userlist}}
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/bootstrapPost/js/scripts.js"></script>
+</body>
+</html>
