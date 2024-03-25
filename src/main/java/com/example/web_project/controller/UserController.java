@@ -82,10 +82,10 @@ public class UserController {
         dto.setPostDate(now);
         dto.setPostWriter(userDetails.getUsername()); // 작성자 id 반환
         log.info("[UserController][userWrite] dto >>> "+dto);
-        PostEntity entity = postService.insertPost(dto, file);
-
-        dto.setPostFileName(entity.getPostFileName());
-        dto.setPostFilePath(entity.getPostFilePath());
+            PostEntity entity = postService.insertPost(dto, file);
+            log.info("[UserController][userWrite] File1 >>> "+file.getOriginalFilename());
+            dto.setPostFileName(entity.getPostFileName());
+            dto.setPostFilePath(entity.getPostFilePath());
 
         return "redirect:/user/v2/web/index";
     }

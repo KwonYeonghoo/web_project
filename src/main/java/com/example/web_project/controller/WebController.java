@@ -1,5 +1,7 @@
 package com.example.web_project.controller;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -55,7 +57,7 @@ public class WebController {
     @PostMapping("/register")
     public String register(@Valid @ModelAttribute UserDto dto, HttpServletResponse response) throws Exception{
         log.info("[WebController][register] dto > " + dto.toString());
-        userService.joinUser(dto);
+        userService.joinUser(dto, response);
 
         ScriptUtils.alertAndMovePage(response, "회원가입에 성공하였습니다. 로그인 페이지로 이동합니다!", "/v2/web/loginPage");
         return "/v2/web/loginPage"; // 실행 안됨
@@ -96,4 +98,8 @@ public class WebController {
         return "/bootstrapPost/post";
     }
 
+    @GetMapping("/checkDuplicate")
+    public void checkDuplicate(@RequestParam String userId, HttpServletResponse response) throws IOException{
+        userService.checkDuplicate(userId, response);
+    }
 }

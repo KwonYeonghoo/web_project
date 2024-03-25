@@ -116,8 +116,7 @@ public class PostServiceImpl implements PostService{
         entity.setPostWriter(dto.getPostWriter());
         entity.setPostDate(dto.getPostDate());
 
-        //이미지 파일 삽입 
-
+        //이미지 파일 삽입
 
         String projectPath = System.getProperty("user.dir") + "/src/main/resources/static/files";
         log.info("[PostServiceImpl][insertPost] projectPath >>> "+projectPath);
@@ -128,18 +127,21 @@ public class PostServiceImpl implements PostService{
 
         UUID uuid =UUID.randomUUID();
 
-        String fileName = uuid+"_"+file.getOriginalFilename();
-        // String fileName = file.getOriginalFilename();
+        String fileName;
+        if(file.getOriginalFilename().equals("")){
+            fileName = "_default_image.png";
+            entity.setPostFileName(fileName);
+            entity.setPostFilePath("/files/"+fileName);
+        } else {
+            fileName = uuid+"_"+file.getOriginalFilename();
+            File saveFile = new File(projectPath,fileName);
+            log.info("[PostServiceImpl][insertPost] saveFile >>> "+saveFile);
+            file.transferTo(saveFile);
+            log.info("[PostServiceImpl][insertPost] file.getOriginalFilename >>> "+file.getOriginalFilename());
+            entity.setPostFileName(fileName);
+            entity.setPostFilePath("/files/"+fileName);
+        }
 
-        File saveFile = new File(projectPath,fileName);
-        log.info("[PostServiceImpl][insertPost] saveFile >>> "+saveFile);
-        file.transferTo(saveFile);
-        log.info("[PostServiceImpl][insertPost] Canonical Path >>> "+saveFile.getCanonicalPath());
-        entity.setPostFileName(fileName);
-        // entity.setPostFilePath("/files/"+fileName);
-        entity.setPostFilePath("/files/"+fileName);
-
-        // System.out.println(fileName);
         log.info("[PostServiceImpl][insertPost] entity >>> "+entity);
 
         postDao.insertPost(entity);
@@ -163,17 +165,21 @@ public class PostServiceImpl implements PostService{
         if(!sfile.exists()) {
             sfile.mkdir();
         }
-
         UUID uuid =UUID.randomUUID();
-
-        String fileName = uuid+"_"+file.getOriginalFilename();
-
-        File saveFile = new File(projectPath,fileName);
-        
-        file.transferTo(saveFile);
-        
-        entity.setPostFileName(fileName);
-        entity.setPostFilePath("/files/"+fileName);
+        String fileName;
+        if(file.getOriginalFilename().equals("")){
+            fileName = "_default_image.png";
+            entity.setPostFileName(fileName);
+            entity.setPostFilePath("/files/"+fileName);
+        } else {
+            fileName = uuid+"_"+file.getOriginalFilename();
+            File saveFile = new File(projectPath,fileName);
+            log.info("[PostServiceImpl][insertPost] saveFile >>> "+saveFile);
+            file.transferTo(saveFile);
+            log.info("[PostServiceImpl][insertPost] file.getOriginalFilename >>> "+file.getOriginalFilename());
+            entity.setPostFileName(fileName);
+            entity.setPostFilePath("/files/"+fileName);
+        }
 
         
         System.out.println("Entity :"+ entity.toString());
