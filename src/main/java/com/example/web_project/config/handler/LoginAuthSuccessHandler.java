@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
-import com.example.ScriptUtils;
+import com.example.web_project.model.DTO.UserDto;
 import com.example.web_project.service.UserService;
 
 import jakarta.servlet.ServletException;
@@ -33,12 +33,18 @@ public class LoginAuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandl
 
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         userService.updateIsLoginByName(userDetails.getUsername(), true);
-        if (userDetails.getUsername() == null) {
-            response.sendRedirect("/v1/web/index");
-        } else if (userDetails.getUsername().equals("admin")) {
-            response.sendRedirect("/v1/web/admin/index");
+        String userName = userDetails.getUsername();
+
+        UserDto userDto = userService.getUserByName(userName);
+
+        if (userName == null) {
+            response.sendRedirect("/v2/web/index");
+        } else 
+        
+        if (userDto.getUserRole().equals("ADMIN")) {
+            response.sendRedirect("/admin/v2/web/index");
         } else {
-            response.sendRedirect("/v1/web/user/index");
+            response.sendRedirect("/user/v2/web/index");
         }
         // ScriptUtils.alertAndMovePage(response, String.format("%s님 환영합니다!", userDetails.getUsername()), "/v1/web/user/index");
         super.onAuthenticationSuccess(request, response, authentication);

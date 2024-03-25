@@ -16,12 +16,12 @@
         <!-- 상단바 -->
         <nav class="navbar navbar-expand-lg navbar-white bg-white border-bottom">
             <div class="container">
-                <h1><a class="navbar-brand" href="/v1/web/admin/index"><img width="200" height="80" src="/bootstrapMain/assets/logo.png" class="custom-logo"></a></h1>
+                <h1><a class="navbar-brand" href="/admin/v2/web/index"><img width="200" height="80" src="/bootstrapMain/assets/logo.png" class="custom-logo"></a></h1>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <!-- 글쓰기 -->
-                        <li class="nav-item px-2 "><a class="nav-link" href="/v1/web/admin/write">글쓰기</a></li>
+                        <li class="nav-item px-2 "><a class="nav-link" href="/admin/v2/web/write">글쓰기</a></li>
                         <!-- 로그아웃 -->
                         <li class="nav-item px-2 "><a class="nav-link" href="/logout">Logout</a></li>
                     </ul>
@@ -62,7 +62,7 @@
                                             <td>{{userEmail}}</td>
                                             <td>{{userAge}}</td>
                                             <td>{{userRole}}</td>
-                                            <td><a class="btn btn-danger" href="/v1/web/userdelete?id={{userId}}" role="button">계정 삭제</a></td>
+                                            <td><a class="btn btn-danger" href="/admin/v2/web/userdelete?id={{userId}}" role="button">계정 삭제</a></td>
                                         </tr>
                                         {{/userlist}}
                                     </tbody>

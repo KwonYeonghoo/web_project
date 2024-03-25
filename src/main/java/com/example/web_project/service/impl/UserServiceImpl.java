@@ -68,6 +68,7 @@ public class UserServiceImpl implements UserService{
         dto.setUserAge(entity.getUserAge());
         dto.setUserEmail(entity.getUserEmail());
         dto.setUserAddress(entity.getUserAddress());
+        dto.setUserRole(entity.getUserRole());
         
         return dto;
     }

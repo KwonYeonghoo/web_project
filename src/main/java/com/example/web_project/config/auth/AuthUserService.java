@@ -30,7 +30,7 @@ public class AuthUserService implements UserDetailsService{
         // dto.setIsLogin(userEntity.getIsLogin());
 
         if(userDto != null) {
-            return new AuthUserDto(userDto);
+            return new AuthUserDto(userDto); // 인증에 성공한 user 객체
         }
         // 존재하지 않음
         return null;

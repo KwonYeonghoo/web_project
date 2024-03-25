@@ -24,6 +24,7 @@ import lombok.ToString;
 public class UserEntity {
     @Id
     @NotBlank
+    @Column(unique = true)
     private String userId;
 
     @NotBlank

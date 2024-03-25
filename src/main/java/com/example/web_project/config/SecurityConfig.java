@@ -1,13 +1,11 @@
 package com.example.web_project.config;
 
-import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -15,7 +13,6 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 
 import com.example.web_project.config.handler.LoginAuthFailureHandler;
 import com.example.web_project.config.handler.LoginAuthSuccessHandler;
@@ -29,9 +26,7 @@ public class SecurityConfig  {
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
         return (web) ->  web.ignoring().requestMatchers( "/files/**");
-      
     }
-
 
     @Bean
     public BCryptPasswordEncoder eBCryptPasswordEncoder() {
@@ -69,15 +64,13 @@ public class SecurityConfig  {
             .authorizeHttpRequests(authorize -> authorize
                 .requestMatchers("/user/**")
                     .authenticated()
-                .requestMatchers("/manager/**")
-                    .hasAnyAuthority("MANAGER", "ADMIN")
                 .requestMatchers("/admin/**")
                     .hasAnyAuthority("ADMIN")
                 .anyRequest().permitAll()
             )
             .formLogin(formLogin -> formLogin
-                .loginPage("/v1/web/loginPage")
-                .loginProcessingUrl("/v1/web/login")
+                .loginPage("/v2/web/loginPage")
+                .loginProcessingUrl("/v2/web/login")
                 .successHandler(loginAuthSuccessHandler1())
                 .failureHandler(loginAuthFailureHandler1())
                 .permitAll()

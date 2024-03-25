@@ -15,14 +15,14 @@
         <!-- 상단바 -->
         <nav class="navbar navbar-expand-lg navbar-white bg-white border-bottom">
             <div class="container">
-                <h1><a class="navbar-brand" href="/v1/web/admin/index"><img width="200" height="80" src="/bootstrapMain/assets/logo.png" class="custom-logo"></a></h1>
+                <h1><a class="navbar-brand" href="/admin/v2/web/index"><img width="200" height="80" src="/bootstrapMain/assets/logo.png" class="custom-logo"></a></h1>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <!-- 글쓰기 -->
-                        <li class="nav-item px-2 "><a class="nav-link" href="/v1/web/admin/write">글쓰기</a></li>
+                        <li class="nav-item px-2 "><a class="nav-link" href="/admin/v2/web/write">글쓰기</a></li>
                         <!-- 관리자 페이지 -->
-                        <li class="nav-item px-2 "><a class="nav-link" href="/v1/web/admin/setting">관리자페이지</a></li>
+                        <li class="nav-item px-2 "><a class="nav-link" href="/admin/v2/web/setting">관리자페이지</a></li>
                         <!-- 로그아웃 -->
                         <li class="nav-item px-2 "><a class="nav-link" href="/logout">Logout</a></li>
                     </ul>
@@ -56,16 +56,16 @@
                     </article>
                     <!-- 버튼 추가 -->
                     <div class="my-4 text-end">
-                        <button type="button" id="update" class="btn btn-primary" onClick="location.href='/v1/web/admin/postupdate?id={{postId}}'">수정</button>
-                        <button type="button" id="delete" class="btn btn-danger" onClick="location.href='/v1/web/admin/postdelete?id={{postId}}'">삭제</button>
-                        <button type="button" class="btn btn-secondary" onClick="location.href='/v1/web/admin/index'">목록</button>
+                        <button type="button" id="update" class="btn btn-primary" onClick="location.href='/admin/v2/web/postupdate?id={{postId}}'">수정</button>
+                        <button type="button" id="delete" class="btn btn-danger" onClick="location.href='/admin/v2/web/postdelete?id={{postId}}'">삭제</button>
+                        <button type="button" class="btn btn-secondary" onClick="location.href='/admin/v2/web/index'">목록</button>
                     </div>
                     <!-- Comments section-->
                     <section class="mb-5">
                         <div class="card bg-light">
                             <div class="card-body">
                                 <!-- Comment form-->
-                                <form class="mb-4"   action="/v1/web/comment?id={{postId}}" method="post" >
+                                <form class="mb-4"   action="/admin/v2/web/comment?id={{postId}}" method="post" >
                                     <textarea class="form-control" name = "commentComment" rows="3" placeholder="댓글을 남겨주세요!"></textarea>
                                     <button type="submit" class="btn btn-primary">작성하기</button>
                                 </form>

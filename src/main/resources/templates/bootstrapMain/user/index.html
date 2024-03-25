@@ -19,7 +19,7 @@
         <!-- 상단바 -->
         <nav class="navbar navbar-expand-lg navbar-white bg-white border-bottom">
             <div class="container">
-                <h1><a class="navbar-brand" href="/v1/web/user/index"><img width="200" height="80" src="/bootstrapMain/assets/logo.png" class="custom-logo"></a></h1>
+                <h1><a class="navbar-brand" href="/user/v2/web/index"><img width="200" height="80" src="/bootstrapMain/assets/logo.png" class="custom-logo"></a></h1>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -59,7 +59,7 @@
         <!-- 글쓰기 버튼-->
         <div class="container mt-3 mb-3">
             <div class="d-flex justify-content-end">
-                <a class="btn btn-primary" role="button" href="/v1/web/user/write">글쓰기</a>
+                <a class="btn btn-primary" role="button" href="/user/v2/web/write">글쓰기</a>
             </div>
         </div>
         <!-- 게시글 -->
@@ -70,13 +70,13 @@
                     <h1 class="display-3">Best Post</h1>
                     {{#mostViewed}}
                     <div class="card mb-3">
-                        <a href="/v1/web/user/post2?postId={{postId}}"><img class="card-img-top" src="{{postFilePath}}" alt="..." /></a>
+                        <a href="/user/v2/web/post2?postId={{postId}}"><img class="card-img-top" src="{{postFilePath}}" alt="..." /></a>
                         <div class="card-body">
                             <div class="small text-muted">작성일: {{postDate}}</div>
                             <h1 class="card-title h4">[베스트 게시글] {{postTitle}}</h1>
                             <p class="card-text">작성자: {{postWriter}}</p>
                             <p class="card-viewNum">조회수: {{postViewNum}}</p>
-                            <a class="btn btn-primary" href="/v1/web/user/post2?postId={{postId}}">자세히 →</a>
+                            <a class="btn btn-primary" href="/user/v2/web/post2?postId={{postId}}">자세히 →</a>
                         </div>
                     </div>
                     {{/mostViewed}}
@@ -90,13 +90,13 @@
                         <div class="col-lg-6">
                             <!-- 게시글 -->
                             <div class="card mb-4">
-                                <a href="/v1/web/user/post2?postId={{postId}}"><img height="442" class="card-img-top" src="{{postFilePath}}" alt="..." /></a>
+                                <a href="/user/v2/web/post2?postId={{postId}}"><img height="442" class="card-img-top" src="{{postFilePath}}" alt="..." /></a>
                                 <div class="card-body">
                                     <div class="small text-muted">작성일: {{postDate}}</div>
                                     <h2 class="card-title h4">{{postTitle}}</h2>
                                     <p class="card-text">작성자: {{postWriter}}</p>
                                     <p class="card-viewNum">조회수: {{postViewNum}}</p>
-                                    <a class="btn btn-primary" href="/v1/web/user/post2?postId={{postId}}">자세히 →</a>
+                                    <a class="btn btn-primary" href="/user/v2/web/post2?postId={{postId}}">자세히 →</a>
                                 </div>
                             </div>
                         </div>

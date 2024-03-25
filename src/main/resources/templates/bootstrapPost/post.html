@@ -15,14 +15,14 @@
         <!-- 상단바 -->
         <nav class="navbar navbar-expand-lg navbar-white bg-white border-bottom">
             <div class="container">
-                <h1><a class="navbar-brand" href="/v1/web/index"><img width="200" height="80" src="/bootstrapMain/assets/logo.png" class="custom-logo"></a></h1>
+                <h1><a class="navbar-brand" href="/v2/web/index"><img width="200" height="80" src="/bootstrapMain/assets/logo.png" class="custom-logo"></a></h1>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <!-- 회원가입 -->
-                        <li class="nav-item px-2 "><a class="nav-link" href="/v1/web/registerPage">SignUp</a></li>
+                        <li class="nav-item px-2 "><a class="nav-link" href="/v2/web/registerPage">SignUp</a></li>
                         <!-- 로그인 -->
-                        <li class="nav-item px-2 "><a class="nav-link" href="/v1/web/loginPage">Login</a></li>
+                        <li class="nav-item px-2 "><a class="nav-link" href="/v2/web/loginPage">Login</a></li>
                     </ul>
                 </div>
             </div>         
@@ -53,7 +53,7 @@
                     </article>
                     <!-- 버튼 추가 -->
                     <div class="my-4 text-end">
-                        <button type="button" class="btn btn-secondary" onClick="location.href='/v1/web/index'">목록</button>
+                        <button type="button" class="btn btn-secondary" onClick="location.href='/v2/web/index'">목록</button>
                     </div>
                     <!-- Comments section-->
                     <section class="mb-5">
@@ -61,7 +61,7 @@
                             <div class="card-body">
                                 <!-- Comment form-->
                                 <textarea class="form-control" name = "commentComment" rows="3" placeholder="댓글을 남기려면 로그인해주세요!"></textarea>
-                                <button type="submit" class="btn btn-primary" id="comment" onClick="location.href='/v1/web/post2?postId={{postId}}'">작성하기</button>
+                                <button type="submit" class="btn btn-primary" id="comment" onClick="location.href='/v2/web/post2?postId={{postId}}'">작성하기</button>
                                 
                                 <!-- Comment with nested comments-->
                                 {{#comment}}

@@ -1,16 +1,13 @@
 package com.example.web_project.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import com.example.web_project.model.DAO.CommentDao;
 import com.example.web_project.model.DTO.CommentDto;
 import com.example.web_project.model.Entity.CommentEntity;
-import com.example.web_project.model.Entity.PostEntity;
 import com.example.web_project.service.CommentService;
 
 @Service
