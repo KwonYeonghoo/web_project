@@ -10,7 +10,7 @@ import com.example.web_project.model.Entity.CommentEntity;
 
 
 public interface CommentRepository extends JpaRepository<CommentEntity,Long> {
-     
-    @Query(value = "select * from comment  where  comment_postid= :postid",nativeQuery = true)
+    
+    @Query(value = "select * from comment  where  comment_postid= :postid", nativeQuery = true)
     public List<CommentEntity> findComment(@Param("postid") int postid);
 }

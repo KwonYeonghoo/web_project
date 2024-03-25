@@ -5,3 +5,8 @@
 */
 // This file is intentionally blank
 // Use this file to add JavaScript to your project
+
+let comment = document.getElementById("comment");
+comment.onclick = () => {
+    alert("댓글을 작성하려면 로그인을 해주세요!")
+}

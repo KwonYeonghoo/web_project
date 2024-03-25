@@ -14,10 +14,10 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class CommentDto {
-    private Long commnetId;
+    private Long commentId;
     private String commentComment;
     private Date commentDate;
     private Long commentPostid;
-    private Long commentUserid; 
+    private String commentUserid; 
 
 }

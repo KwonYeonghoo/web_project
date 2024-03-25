@@ -1,5 +1,6 @@
 package com.example.web_project.service.impl;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,11 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.example.ScriptUtils;
 import com.example.web_project.model.DAO.UserDao;
 import com.example.web_project.model.DTO.UserDto;
 import com.example.web_project.model.Entity.UserEntity;
 import com.example.web_project.service.UserService;
 
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
@@ -59,13 +62,16 @@ public class UserServiceImpl implements UserService{
         UserEntity entity = userDao.getUserByName(userId);
         UserDto dto = new UserDto();
         log.info("[UserServiceImpl][getUserByName] entity >>> " + entity);
-
+        if(entity == null){
+            return null;
+        }
         dto.setUserId(entity.getUserId());
         dto.setUserName(entity.getUserName());
         dto.setUserPw(entity.getUserPw());
         dto.setUserAge(entity.getUserAge());
         dto.setUserEmail(entity.getUserEmail());
         dto.setUserAddress(entity.getUserAddress());
+        dto.setUserRole(entity.getUserRole());
         
         return dto;
     }
@@ -110,7 +116,7 @@ public class UserServiceImpl implements UserService{
 
     // 회원가입
     @Override
-    public void joinUser(UserDto dto) {
+    public void joinUser(UserDto dto, HttpServletResponse response) throws IOException{
         // TODO Auto-generated method stub
         // 권한 적용
         dto.setUserRole("USER");
@@ -118,6 +124,11 @@ public class UserServiceImpl implements UserService{
             dto.setUserRole("ADMIN");
         } else if(dto.getUserId().equals("manager")) {
             dto.setUserRole("MANAGER");
+        }
+
+        // 이미 아이디가 존재한다면
+        if (userDao.getUserByName(dto.getUserId()) != null){
+            ScriptUtils.alertAndMovePage(response, "이미 존재하는 아이디가 있습니다.", "/v2/web/registerPage");
         }
 
         // 비밀번호 암호화 적용
@@ -139,6 +150,18 @@ public class UserServiceImpl implements UserService{
         entity.setUserRole(dto.getUserRole());
         
         userDao.insertUser(entity);
+    }
+
+    @Override
+    public void checkDuplicate(String userId, HttpServletResponse response) throws IOException{
+        // TODO Auto-generated method stub
+        UserEntity userEntity = userDao.getUserByName(userId);
+        if(userEntity != null){
+            ScriptUtils.alertAndBackPage(response, "이미 존재하는 아이디입니다.");
+        }
+        else {
+            ScriptUtils.alertAndBackPage(response, "사용하실 수 있는 아이디입니다!");
+        }
     }
 
     

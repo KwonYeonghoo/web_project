@@ -10,12 +10,12 @@ public interface CommentService {
 
     void writeComment(CommentDto commentRequestDTO, Long boardId);
 
-  
+    
     List<CommentEntity> commentList(int id);
 
-   
+    
     void updateComment(CommentDto commentRequestDTO, Long commentId);
 
-   
+    
     void deleteComment(Long commentId);
 }

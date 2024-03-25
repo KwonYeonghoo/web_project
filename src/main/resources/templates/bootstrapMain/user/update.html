@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Post Write</title>
+        <title>사용자 게시글 페이지</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="/bootstrapPost/assets/favicon.ico" />
         <!-- Core theme CSS (includes Bootstrap)-->
@@ -15,7 +15,7 @@
         <!-- 상단바 -->
         <nav class="navbar navbar-expand-lg navbar-white bg-white border-bottom">
             <div class="container">
-                <h1><a class="navbar-brand" href="/v1/web/user/index"><img width="200" height="80" src="/bootstrapMain/assets/logo.png" class="custom-logo"></a></h1>
+                <h1><a class="navbar-brand" href="/user/v2/web/index"><img width="200" height="80" src="/bootstrapMain/assets/logo.png" class="custom-logo"></a></h1>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -30,7 +30,7 @@
             <div class="container min-vh-100 justify-content-center">     
                 <div class="justify-content-center">
                 <h3 class="mb-4">게시글 수정</h3>
-                <form  action="/v1/web/user/postupdate?id={{postId}}" method="post" enctype="multipart/form-data">
+                <form  action="/user/v2/web/postupdate?id={{postId}}" method="post" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="postTitle" class="form-label">제목</label>
                         <input type="text"  name="postTitle" class="form-control" id="postTitle"  value={{postTitle}}>
@@ -49,7 +49,7 @@
                     </div>
                     <div class="mb-3 text-end">
                         <button type="submit" class="btn btn-primary">수정하기</button>
-                        <a class="btn btn-danger" href="/v1/web/user/index">취소</a>
+                        <a class="btn btn-danger" href="/user/v2/web/post2?postId={{postId}}">취소</a>
                     </div>
                 </form>
             </div>

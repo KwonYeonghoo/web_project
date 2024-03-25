@@ -36,14 +36,20 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                             </div>
-                            <form class="user" action="/v1/web/register" method="post">
+                            <form class="user" action="/v2/web/register" method="post">
                                 <div class="form-group">
                                     <input type="name" name="userName" class="form-control form-control-user" id="userName"
                                         placeholder="Name">
                                 </div>
                                 <div class="form-group">
-                                    <input type="id" name="userId" class="form-control form-control-user" id="userId"
-                                        placeholder="ID">
+                                    <div class="input-group"> <!-- input-group 추가 -->
+                                        <input type="id" name="userId" class="form-control form-control-user" id="userId" placeholder="ID">
+                                        <div class="input-group-append"> <!-- input-group-append 추가 -->
+                                            <button class="btn btn-outline-secondary" type="button" onclick="location.href='/v2/web/checkDuplicate?userId='+checkDuplicates()">ID 중복확인</button> <!-- 중복 확인 버튼 -->
+                                        </div>
+                                    </div>
+                                    <!-- <input type="id" name="userId" class="form-control form-control-user" id="userId" placeholder="ID"> -->
+                                        
                                 </div>
                                 <div class="form-group">
                                     <input type="email" name="userEmail" class="form-control form-control-user" id="userEmail"
@@ -73,7 +79,7 @@
                                 <a class="small" href="forgot-password.html">Forgot Password?</a>
                             </div>
                             <div class="text-center">
-                                <a class="small" href="/v1/web/loginPage">Already have an account? Login!</a>
+                                <a class="small" href="/v2/web/loginPage">Already have an account? Login!</a>
                             </div>
                         </div>
                     </div>

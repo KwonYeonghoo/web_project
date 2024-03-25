@@ -30,9 +30,10 @@ public class AuthProvider implements AuthenticationProvider{
 
         String name = authentication.getName();
         String pwd = (String)authentication.getCredentials();
-        log.info("name: "+name+" / pwd: "+pwd);
+        log.info("[AuthProvider][authenticate] name: "+name+" / pwd: "+pwd);
 
-        UserDetails userDetails = (AuthUserDto)securityUserService.loadUserByUsername(name);
+        UserDetails userDetails = (AuthUserDto)securityUserService.loadUserByUsername(name); // 인증에 성공한 user의 객체
+        log.info("[AuthProvider][authenticate] userDetails >>> " + userDetails);
         if(userDetails == null) {
             throw new UsernameNotFoundException("There is no username >>> " + name);
         }
