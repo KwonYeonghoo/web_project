@@ -11,7 +11,7 @@ public interface UserService {
     public List<UserDto> getAllUser();
 
     // insert
-    public void insertUser(UserDto dto);
+    public void insertUser(UserDto dto)throws Exception;
 
     // update
     public void updateUser(UserDto dto);
@@ -23,5 +23,5 @@ public interface UserService {
     public void updateIsLoginByName(String userId, Boolean isLogin);
 
     // 회원가입
-    public void joinUser(UserDto dto);
+    public void joinUser(UserDto dto) throws Exception;
 }

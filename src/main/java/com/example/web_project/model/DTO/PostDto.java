@@ -2,6 +2,7 @@ package com.example.web_project.model.DTO;
 
 import java.util.Date;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,9 +14,12 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+
 public class PostDto {
     private Long postId;
+  
     private String postTitle;
+ 
     private String postWriter;
     private Date postDate;
     private String postContent;

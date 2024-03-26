@@ -74,7 +74,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public void insertUser(UserDto dto) {
+    public void insertUser(UserDto dto) throws Exception{
         // TODO Auto-generated method stub
         UserEntity entity = new UserEntity();
         entity.setUserId(dto.getUserId());
@@ -113,7 +113,7 @@ public class UserServiceImpl implements UserService{
 
     // 회원가입
     @Override
-    public void joinUser(UserDto dto) {
+    public void joinUser(UserDto dto) throws Exception{
         // TODO Auto-generated method stub
         // 권한 적용
         dto.setUserRole("USER");
@@ -124,7 +124,14 @@ public class UserServiceImpl implements UserService{
         }
 
         // 비밀번호 암호화 적용
+        if(dto.getUserPw().isEmpty()) {
+            throw new Exception();
+        }
+
+        
         String rawPwd = dto.getUserPw();
+        
+            
         String encodedPwd = bCryptPasswordEncoder.encode(rawPwd);
         dto.setUserPw(encodedPwd);
 

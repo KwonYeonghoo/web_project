@@ -17,7 +17,7 @@ public class CommentServiceImpl implements CommentService{
     private CommentDao commentDao;
 
     @Override
-    public List<CommentEntity> commentList(int id) {
+    public List<CommentEntity> commentList(int id)  throws Exception{
         // TODO Auto-generated method stub
 
         
@@ -26,13 +26,13 @@ public class CommentServiceImpl implements CommentService{
     }
 
     @Override
-    public void deleteComment(Long commentId) {
+    public void deleteComment(Long commentId) throws Exception {
         // TODO Auto-generated method stub
         commentDao.deleteComment(commentId);
     }
 
     @Override
-    public void updateComment(CommentDto dto, Long commentId) {
+    public void updateComment(CommentDto dto, Long commentId)  throws Exception{
         // TODO Auto-generated method stub
         CommentEntity entity = new CommentEntity();
         entity.setCommentId(dto.getCommentId());
@@ -45,7 +45,7 @@ public class CommentServiceImpl implements CommentService{
     }
 
     @Override
-    public void writeComment(CommentDto dto, Long boardId) {
+    public void writeComment(CommentDto dto, Long boardId) throws Exception {
         // TODO Auto-generated method stub
 
         CommentEntity entity = new CommentEntity();

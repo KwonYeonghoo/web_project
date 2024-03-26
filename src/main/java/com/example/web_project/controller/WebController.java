@@ -38,17 +38,17 @@ public class WebController {
     private PostServiceImpl postService;
 
     @GetMapping("/post")
-    public String getPost() {
+    public String getPost()throws Exception {
         return "/bootstrapPost/post";
     }
 
     @GetMapping("/loginPage")
-    public String getLoginPage() {
+    public String getLoginPage() throws Exception {
         return "/bootstrapJL/login";
     }
 
     @GetMapping("/registerPage")
-    public String getRegisterPage() {
+    public String getRegisterPage() throws Exception{
         return "/bootstrapJL/register";
     }
 
@@ -57,12 +57,12 @@ public class WebController {
         log.info("[WebController][register] dto > " + dto.toString());
         userService.joinUser(dto);
 
-        ScriptUtils.alertAndMovePage(response, "회원가입에 성공하였습니다. 로그인 페이지로 이동합니다!", "/v2/web/loginPage");
+        ScriptUtils.alert(response, "회원가입에 성공하였습니다. 로그인 페이지로 이동합니다!");
         return "/v2/web/loginPage"; // 실행 안됨
     }
 
     @GetMapping("/index")
-    public String boardList(Model model, @PageableDefault(page = 0,size= 6, sort="postDate" ) Pageable pageable) {
+    public String boardList(Model model, @PageableDefault(page = 0,size= 6, sort="postDate" ) Pageable pageable)  throws Exception{
         // model.addAttribute("lt", postService.getAllPost(pageable));
         model.addAttribute("lt", postService.findAllByOrderByPostIdDesc(pageable));
         model.addAttribute("mostViewed", postService.findMostViewedPost());
@@ -75,7 +75,7 @@ public class WebController {
     }
 
     @GetMapping("/post2")
-    public String indexView(Model model, @RequestParam String postId) {
+    public String indexView(Model model, @RequestParam String postId)  throws Exception{
         
         Long longpostId = Long.parseLong(postId);
         PostDto dto = postService.getByPostId(longpostId);
