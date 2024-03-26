@@ -30,6 +30,7 @@ import com.example.web_project.model.DTO.PostDto;
 import com.example.web_project.model.Entity.CommentEntity;
 import com.example.web_project.model.Entity.PostEntity;
 import com.example.web_project.service.CommentService;
+import com.example.web_project.service.UserService;
 import com.example.web_project.service.impl.PostServiceImpl;
 
 import jakarta.servlet.http.HttpServletResponse;
@@ -50,7 +51,7 @@ public class UserController {
     private CommentService commentService;
 
     @GetMapping("/index")
-    public String userIndexPage(Authentication authentication, Model model, @PageableDefault(page = 0,size= 6, sort="postDate" ) Pageable pageable) {
+    public String userIndexPage(Authentication authentication, Model model, @PageableDefault(page = 0,size= 6, sort="postDate" ) Pageable pageable) throws Exception {
         
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         log.info("[UserController][userDetails] userName >> " + userDetails.getUsername());
