@@ -36,42 +36,33 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                             </div>
-                            <form class="user" action="/v2/web/register" method="post">
+                            <form class="user" action="/v2/web/register" method="post" onsubmit="return validatePasswords()">
                                 <div class="form-group">
-                                    <input type="name" name="userName" class="form-control form-control-user" id="userName"
-                                        placeholder="Name">
+                                    <input type="name" name="userName" class="form-control form-control-user" id="userName" placeholder="Name">
                                 </div>
-                                <div class="form-group">
-                                    <div class="input-group"> <!-- input-group 추가 -->
-                                        <input type="id" name="userId" class="form-control form-control-user" id="userId" placeholder="ID">
-                                        <div class="input-group-append"> <!-- input-group-append 추가 -->
-                                            <button class="btn btn-outline-secondary" type="button" onclick="location.href='/v2/web/checkDuplicate?userId='+checkDuplicates()">ID 중복확인</button> <!-- 중복 확인 버튼 -->
-                                        </div>
+                                <div class="input-group"> <!-- input-group 추가 -->
+                                    <input type="id" name="userId" class="form-control form-control-user" id="userId" placeholder="ID">
+                                    <div class="input-group-append"> <!-- input-group-append 추가 -->
+                                        <button class="btn btn-outline-secondary" type="button" onclick="location.href='/v2/web/checkDuplicate?userId='+checkDuplicates()">ID 중복확인</button> <!-- 중복 확인 버튼 -->
                                     </div>
-                                    <!-- <input type="id" name="userId" class="form-control form-control-user" id="userId" placeholder="ID"> -->
-                                        
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" name="userEmail" class="form-control form-control-user" id="userEmail"
-                                        placeholder="Email Address">
+                                    <input type="email" name="userEmail" class="form-control form-control-user" id="userEmail" placeholder="Email Address">
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="password" name="userPw" class="form-control form-control-user"
-                                            id="userPw" placeholder="Password">
+                                        <input type="password" name="userPw" class="form-control form-control-user" id="userPw" placeholder="Password">
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="password" class="form-control form-control-user"
-                                            id="userPwRepeat" placeholder="Repeat Password">
+                                        <input type="password" class="form-control form-control-user" id="userPwRepeat" placeholder="Repeat Password" oninput="checkPasswordMatch()">
+                                        <small id="passwordMatchMessage"></small> <!-- 비밀번호 일치 여부 메시지를 표시할 곳 -->
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="age" name="userAge" class="form-control form-control-user" id="userAge"
-                                        placeholder="Age">
+                                    <input type="age" name="userAge" class="form-control form-control-user" id="userAge" placeholder="Age">
                                 </div>
                                 <div class="btn btn-primary btn-user btn-block">
                                     <button type="submit" class="btn btn-secondary">Sign Up</button>
-                                    <!-- <input type="submit" value="Register Account" /> -->
                                 </div>
                             </form>
                             <hr>
@@ -98,6 +89,34 @@
 
     <!-- Custom scripts for all pages-->
     <script src="/bootstrapJL/js/sb-admin-2.min.js"></script>
+
+    <script>
+        function checkPasswordMatch() {
+            var password = document.getElementById("userPw").value; // 비밀번호 입력값
+            var confirmPassword = document.getElementById("userPwRepeat").value; // 비밀번호 재확인 입력값
+            var messageElement = document.getElementById("passwordMatchMessage"); // 메시지를 표시할 요소
+    
+            if (password === confirmPassword) {
+                messageElement.textContent = "비밀번호 불일치"; // 비밀번호가 일치하는 경우
+                messageElement.style.color = "green"; // 초록색으로 표시
+            } else {
+                messageElement.textContent = "비밀번호 일치"; // 비밀번호가 일치하지 않는 경우
+                messageElement.style.color = "red"; // 빨간색으로 표시
+            }
+        }
+    
+        function validatePasswords() {
+            var password = document.getElementById("userPw").value; // 비밀번호 입력값
+            var confirmPassword = document.getElementById("userPwRepeat").value; // 비밀번호 재확인 입력값
+    
+            if (password !== confirmPassword) {
+                alert("비밀번호가 일치하지 않습니다. 다시 입력해주세요."); // 비밀번호가 일치하지 않는 경우 경고창 표시
+                return false; // 폼 제출 중지
+            }
+    
+            return true; // 폼 제출 허용
+        }
+    </script>
 
 </body>
 

@@ -17,6 +17,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 
 import com.example.ScriptUtils;
+import com.example.web_project.config.constant.AuthenticationTypes;
 import com.example.web_project.model.DTO.PostDto;
 import com.example.web_project.model.DTO.UserDto;
 import com.example.web_project.service.UserService;
@@ -45,7 +46,8 @@ public class WebController {
     }
 
     @GetMapping("/loginPage")
-    public String getLoginPage() {
+    public String getLoginPage(@RequestParam(value = "errorMessage", required = false) String errorMessage, Model model) {
+        model.addAttribute("errorMessage", errorMessage);
         return "/bootstrapJL/login";
     }
 
