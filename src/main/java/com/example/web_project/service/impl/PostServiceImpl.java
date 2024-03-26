@@ -1,14 +1,19 @@
 package com.example.web_project.service.impl;
 
 import java.io.File;
+import java.util.Optional;
 import java.util.UUID;
 
+import org.apache.tomcat.util.http.fileupload.impl.IOFileUploadException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.web_project.exception.CustomException;
+import com.example.web_project.exception.ErrorCode;
 import com.example.web_project.model.DAO.CommentDao;
 import com.example.web_project.model.DAO.PostDao;
 import com.example.web_project.model.DTO.PostDto;
@@ -16,6 +21,7 @@ import com.example.web_project.model.Entity.PostEntity;
 import com.example.web_project.service.PostService;
 
 import jakarta.transaction.Transactional;
+import jakarta.validation.constraints.Null;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -107,11 +113,17 @@ public class PostServiceImpl implements PostService{
     }
 
     @Override
-    public PostEntity insertPost(PostDto dto , MultipartFile file) throws Exception {
+    public PostEntity insertPost(PostDto dto , MultipartFile file) throws Exception{
         // TODO Auto-generated method stub
         PostEntity entity = new PostEntity();
         entity.setPostId(dto.getPostId());
+        log.info("[postservice] 포스트엔터티:");
+        // if (dto.getPostTitle().isEmpty()) {
+        //     throw new Exception();
+
+        // }
         entity.setPostTitle(dto.getPostTitle());
+
         entity.setPostContent(dto.getPostContent());
         entity.setPostWriter(dto.getPostWriter());
         entity.setPostDate(dto.getPostDate());
@@ -154,6 +166,8 @@ public class PostServiceImpl implements PostService{
         // TODO Auto-generated method stub
         PostEntity entity = postDao.getByPostId(dto.getPostId());
         entity.setPostTitle(dto.getPostTitle());
+   
+        Optional.ofNullable(dto.getPostContent()).orElseThrow(()->new Exception());
         entity.setPostContent(dto.getPostContent());
         entity.setPostWriter(dto.getPostWriter());
         entity.setPostDate(dto.getPostDate());
@@ -192,7 +206,7 @@ public class PostServiceImpl implements PostService{
 
     
     @Override
-    public void saveDto(PostDto dto) {
+    public void saveDto(PostDto dto) throws Exception {
         // TODO Auto-generated method stub
         PostEntity entity = postDao.getByPostId(dto.getPostId());
         entity.setPostViewNum(dto.getPostViewNum());
@@ -200,13 +214,13 @@ public class PostServiceImpl implements PostService{
     }
 
     @Override
-    public void viewPost(PostDto dto) {
+    public void viewPost(PostDto dto) throws Exception {
         // TODO Auto-generated method stub
         PostEntity entity = postDao.getByPostId(dto.getPostId());
         System.err.println(entity.toString());
     }
     @Transactional
-    public Boolean getListCheck(Pageable pageable) {
+    public Boolean getListCheck(Pageable pageable)  throws Exception{
         Page<PostEntity> saved = getAllPost(pageable);
         Boolean check = saved.hasNext();
 

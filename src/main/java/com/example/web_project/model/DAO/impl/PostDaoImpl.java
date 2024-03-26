@@ -1,15 +1,22 @@
 package com.example.web_project.model.DAO.impl;
 
+
+
+import org.apache.el.stream.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.example.web_project.exception.CustomException;
 import com.example.web_project.model.DAO.PostDao;
 import com.example.web_project.model.Entity.PostEntity;
 import com.example.web_project.model.Repository.PostRepository;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class PostDaoImpl implements PostDao{
 
     @Autowired
@@ -46,13 +53,16 @@ public class PostDaoImpl implements PostDao{
     @Override
     public PostEntity getByPostId(Long postId) {
         // TODO Auto-generated method stub
-        return postRepository.getByPostId(postId);
+         return postRepository.getByPostId(postId);
     }
 
     @Override
-    public void insertPost(PostEntity entity) {
+    public void insertPost(PostEntity entity)   {
         // TODO Auto-generated method stub
+        
         postRepository.save(entity);
+       
+        
     }
 
     @Override

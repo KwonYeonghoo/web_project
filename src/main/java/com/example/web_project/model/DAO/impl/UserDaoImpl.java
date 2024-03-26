@@ -36,7 +36,7 @@ public class UserDaoImpl implements UserDao{
     }
 
     @Override
-    public void insertUser(UserEntity entity) {
+    public void insertUser(UserEntity entity)throws Exception {
         // TODO Auto-generated method stub
         userRepository.save(entity);
     }
