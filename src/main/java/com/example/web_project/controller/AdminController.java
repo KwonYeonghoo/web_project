@@ -52,7 +52,7 @@ public class AdminController {
 
     // 관리자 메인화면
     @GetMapping("/index")
-    public String userIndexPage(Authentication authentication, Model model, @PageableDefault(page = 0,size= 6, sort="postDate" ) Pageable pageable) {
+    public String userIndexPage(Authentication authentication, Model model, @PageableDefault(page = 0,size= 6, sort="postDate" ) Pageable pageable)  throws Exception{
         log.info("[AdminController][userIndexPage] start");
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         log.info("[AdminController][userIndexPage] userName >> " + userDetails.getUsername());
@@ -121,7 +121,7 @@ public class AdminController {
 
     // 관리자 게시글
     @GetMapping("/post2")
-    public String view(Model model, @RequestParam String postId, Authentication authentication) {
+    public String view(Model model, @RequestParam String postId, Authentication authentication)  throws Exception{
         
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         String userId = userDetails.getUsername();
@@ -232,7 +232,7 @@ public class AdminController {
     // 관리자 게시글 삭제는 postcontroller에 권한 설정 추가함
 
     @PostMapping("/comment")
-    public String insertPost(@Valid @ModelAttribute CommentDto dto ,@RequestParam long id, Authentication authentication) {
+    public String insertPost(@Valid @ModelAttribute CommentDto dto ,@RequestParam long id, Authentication authentication) throws Exception {
             
         UserDetails userDetails = (UserDetails)authentication.getPrincipal();
         String userId = userDetails.getUsername();

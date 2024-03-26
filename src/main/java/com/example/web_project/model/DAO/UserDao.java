@@ -11,7 +11,7 @@ public interface UserDao {
     public List<UserEntity> getAllUser();
 
     // insert
-    public void insertUser(UserEntity entity);
+    public void insertUser(UserEntity entity) throws Exception;
 
     // update
     public void updateUser(UserEntity entity);

@@ -54,8 +54,7 @@
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
                                                 <input type="checkbox" class="custom-control-input" id="customCheck">
-                                                <label class="custom-control-label" for="customCheck">Remember
-                                                    Me</label>
+                                                <label class="custom-control-label" for="customCheck">로그인 유지하기</label>
                                             </div>
                                         </div>
                                         <div class="btn btn-primary btn-user btn-block">
@@ -90,6 +89,12 @@
 
     <!-- Custom scripts for all pages-->
     <script src="/bootstrapJL/js/sb-admin-2.min.js"></script>
+
+    {{#errorMessage}}
+    <script type="text/javascript">
+        alert("{{errorMessage}}");
+    </script>
+    {{/errorMessage}}
 
 </body>
 

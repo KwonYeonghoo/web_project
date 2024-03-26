@@ -69,14 +69,14 @@ public class UserController {
     }
 
     @GetMapping("/write")
-    public String userWritePage(Authentication authentication) {
+    public String userWritePage(Authentication authentication) throws Exception {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         log.info("[UserController][userWrite] userName >> " + userDetails.getUsername());
         return "/bootstrapMain/user/write";
     }
 
     @PostMapping("/write")
-    public String userWrite(@Valid @ModelAttribute PostDto dto, MultipartFile file, Authentication authentication) throws Exception{
+    public String userWrite(@Valid @ModelAttribute PostDto dto, MultipartFile file, Authentication authentication)throws Exception {
         
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         log.info("[UserController][userWritePage] userDetails >>" + userDetails.getUsername());
@@ -84,17 +84,30 @@ public class UserController {
         Date now = new Date();
         dto.setPostDate(now);
         dto.setPostWriter(userDetails.getUsername()); // 작성자 id 반환
+        //Optional.dto.getPostTitle().
         log.info("[UserController][userWrite] dto >>> "+dto);
+        
+
+        
             PostEntity entity = postService.insertPost(dto, file);
-            log.info("[UserController][userWrite] File1 >>> "+file.getOriginalFilename());
             dto.setPostFileName(entity.getPostFileName());
             dto.setPostFilePath(entity.getPostFilePath());
+        
+        
+        
+    
+        
+        
+        
+
+       
+        
 
         return "redirect:/user/v2/web/index";
     }
 
     @GetMapping("/post2")
-    public String userView(Model model, @RequestParam String postId, Authentication authentication) {
+    public String userView(Model model, @RequestParam String postId, Authentication authentication) throws Exception {
         
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         String userId = userDetails.getUsername();
@@ -232,7 +245,7 @@ public class UserController {
     }
 
     @PostMapping("/comment")
-    public String insertPost(@Valid @ModelAttribute CommentDto dto ,@RequestParam long id, Authentication authentication) {
+    public String insertPost(@Valid @ModelAttribute CommentDto dto ,@RequestParam long id, Authentication authentication) throws Exception {
             
         UserDetails userDetails = (UserDetails)authentication.getPrincipal();
         String userId = userDetails.getUsername();
